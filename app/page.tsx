@@ -11,7 +11,7 @@ export default async function Home() {
       <h1 className={styles.title}>鳴潮 キャラクター紹介</h1>
       <div className={styles.grid}>
         {characters.map((character: Character) => (
-          <Link href={`/characters/${character.characterId}`} key={character.id} className={styles.card}>
+          <Link href={`/characters/${character.id}`} key={character.id} className={styles.card}>
             {character.image && (
               <Image
                 src={character.image.url}

@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 960px; /* 少し広げます */
+  margin: 2rem auto;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem; /* PC表示時の間隔を広げます */
+  }
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+}
+
+.image {
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.details {
+  width: 100%;
+}
+
+/* 【追加】所属スタイル */
+.affiliation {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.name {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* 【修正】メタ情報をグリッドレイアウトに変更 */
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 1.5rem 0;
+}
+
+.metaGrid > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.metaLabel {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.metaValue {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.description {
+  line-height: 1.8;
+}
+
+.description p {
+  margin-bottom: 1em;
+}
