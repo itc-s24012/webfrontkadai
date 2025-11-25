@@ -31,7 +31,7 @@ export const client = createClient({
 export const getCharacterList = async (queries?: MicroCMSQueries) => {
   const listData = await client.getList<Character>({
     endpoint: "characters",
-    queries,
+    queries: { limit: 100, ...queries }, // デフォルトの取得件数を100件に設定
   });
   return listData;
 };
