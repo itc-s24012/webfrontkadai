@@ -39,8 +39,8 @@ export default async function CharacterDetail(props: Props) {
           <Image
             src={character.image.url}
             alt={character.name}
-            width={400}
-            height={400}
+            width={character.image.width}
+            height={character.image.height}
             className={styles.image}
             priority
           />
@@ -65,6 +65,10 @@ export default async function CharacterDetail(props: Props) {
           <div>
             <span className={styles.metaLabel}>出身地</span>
             <span className={styles.metaValue}>{character.origin || '不明'}</span>
+          </div>
+          <div>
+            <span className={styles.metaLabel}>所属</span>
+            <span className={styles.metaValue}>{character.affiliation || '不明'}</span>
           </div>
         </div>
         {character.description && (
