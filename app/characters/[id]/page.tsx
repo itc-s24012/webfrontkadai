@@ -51,23 +51,23 @@ export default async function CharacterDetail(props: Props) {
         <h1 className={styles.name}>{character.name}</h1>
         <div className={styles.metaGrid}>
           <div>
-            <span className={styles.metaLabel}>レアリティ</span>
+            <span className={styles.metaLabel}><b>レアリティ</b></span>
             <span className={styles.metaValue}>{character.rarity}</span>
           </div>
           <div>
-            <span className={styles.metaLabel}>属性</span>
+            <span className={styles.metaLabel}><b>属性</b></span>
             <span className={styles.metaValue}>{character.element}</span>
           </div>
           <div>
-            <span className={styles.metaLabel}>武器種</span>
+            <span className={styles.metaLabel}><b>武器種</b></span>
             <span className={styles.metaValue}>{character.weapon || '不明'}</span>
           </div>
           <div>
-            <span className={styles.metaLabel}>出身地</span>
+            <span className={styles.metaLabel}><b>出身地</b></span>
             <span className={styles.metaValue}>{character.origin || '不明'}</span>
           </div>
           <div>
-            <span className={styles.metaLabel}>所属</span>
+            <span className={styles.metaLabel}><b>所属</b></span>
             <span className={styles.metaValue}>{character.affiliation || '不明'}</span>
           </div>
         </div>
