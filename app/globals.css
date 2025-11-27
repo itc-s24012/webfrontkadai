@@ -1,29 +1,32 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 
 :root {
-  /* 鳴潮っぽいダークカラーパレット */
-  --bg-color-start: #0e0e12;
-  --bg-color-end: #1a1e29;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a6b5;
-  --accent-color: #3fe2d3; /* 鳴潮のキーカラーに近いシアン */
-  --card-bg: rgba(255, 255, 255, 0.07);
-  --card-border: rgba(255, 255, 255, 0.15);
+  /* モダン・ダークパレット */
+  --bg-dark: #09090b;
+  --bg-deep: #111116;
+  --text-white: #ffffff;
+  --text-gray: #a1a1aa;
+  --accent: #5ffad0; /* 鳴潮シアン */
+  --overlay-gradient: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
 }
 
 body {
   margin: 0;
   padding: 0;
-  /* 背景に微かなグラデーションを設定 */
-  background: radial-gradient(circle at top left, #2b3240, var(--bg-color-start));
-  background-attachment: fixed; /* スクロールしても背景を固定 */
-  background-color: var(--bg-color-start);
-  color: var(--text-primary);
-  font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: 'Noto Sans JP', sans-serif; /* 美しいゴシック体 */
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* スクロールバーもスタイリッシュに */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
 }

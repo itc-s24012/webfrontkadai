@@ -1,158 +1,194 @@
+/* --- レイアウト全体 --- */
 .main {
-  padding: 3rem 1.5rem;
-  max-width: 1200px;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  max-width: 1400px; /* ワイドに使う */
   margin: 0 auto;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 4rem;
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  /* タイトルに少しテック感のある輝きを追加 */
-  text-shadow: 0 0 10px rgba(63, 226, 211, 0.4); 
-  border-bottom: 2px solid var(--accent-color);
-  display: inline-block;
-  padding-bottom: 1rem;
-  /* 親要素(main)に対して中央寄せするためのハック */
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+/* --- ヒーローヘッダー（インパクト重視） --- */
+.heroHeader {
+  margin-bottom: 6rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 2rem;
 }
 
-/* --- セクションタイトル --- */
-.sectionTitle,
-.elementTitle {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  border-left: 6px solid var(--accent-color);
-  color: var(--text-primary);
-  font-weight: bold;
+.subHeader {
+  font-size: 0.875rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 6rem); /* 画面サイズに合わせて超巨大化 */
+  margin: 0;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #fff, #888); /* 文字グラデ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroDesc {
+  color: var(--text-gray);
+  margin-top: 1rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
+}
+
+/* --- セクション・見出し --- */
+.section {
+  margin-bottom: 6rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.elementHeader {
   display: flex;
   align-items: center;
-  background: linear-gradient(90deg, rgba(63, 226, 211, 0.1) 0%, transparent 100%);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-radius: 0 8px 8px 0;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.elementSection {
-  margin-bottom: 4rem;
+.elementLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
 }
 
-/* --- 漂泊者セクション --- */
-.roverSection {
-  margin-bottom: 5rem;
-  text-align: center;
+.line {
+  flex-grow: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.roverSection .sectionTitle {
-  justify-content: center;
-  background: none;
-  border-left: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 1rem;
-  width: fit-content;
-  margin: 0 auto 2rem auto;
-}
-
+/* --- 漂泊者特別エリア --- */
 .roverGrid {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-/* 漂泊者カードは少し大きくリッチに */
-.roverGrid .card {
-  width: 280px; /* 固定幅で存在感を出す */
-  box-shadow: 0 0 20px rgba(63, 226, 211, 0.15);
-  border-color: rgba(63, 226, 211, 0.5);
-}
-
-/* --- グリッドとカードデザイン --- */
-.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
+/* --- 通常グリッド --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* カード幅を広めに */
+  gap: 2rem;
+  row-gap: 3rem;
+}
+
+/* --- カードデザイン（最重要） --- */
 .card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  overflow: hidden;
-  
-  /* グラスモーフィズム（すりガラス）背景 */
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--card-border);
-  
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  color: var(--text-primary);
-  height: 100%;
-}
-
-/* ホバー時のアクション */
-.card:hover {
-  transform: translateY(-8px); /* 浮き上がる */
-  background: rgba(255, 255, 255, 0.12); /* 明るく */
-  border-color: var(--accent-color); /* アクセントカラーで枠を光らせる */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-.imageContainer {
   position: relative;
+  display: block;
+  /* 縦長のポートレート比率 2:3 */
+  aspect-ratio: 2 / 3; 
+  border-radius: 16px;
+  overflow: hidden; /* はみ出した画像をカット */
+  background: #1a1a1a;
+  text-decoration: none;
+  isolation: isolate;
+  /* 影 */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 漂泊者カードはさらにワイドにみせる（任意） */
+@media (min-width: 768px) {
+  .cardRover {
+    aspect-ratio: 16 / 9; /* 横長でシネマティックに */
+  }
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* 背景画像エリア */
+.imageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 3 / 4; /* 縦長比率 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 100%;
 }
 
 .cardImage {
   object-fit: cover;
-  object-position: top center; /* 頭が見切れないように */
-  transition: transform 0.4s ease;
+  object-position: top center; /* 頭位置キープ */
+  transition: transform 0.7s ease; /* ゆったり拡大 */
 }
 
 .card:hover .cardImage {
-  transform: scale(1.05); /* 画像を少しズーム */
+  transform: scale(1.1); /* ズームエフェクト */
 }
 
-.cardContent {
-  padding: 1.25rem 1rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* コンテンツ領域を伸ばして高さを揃える */
-  justify-content: space-between;
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-gradient); /* 下部が暗くなるグラデ */
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.card:hover .cardOverlay {
+  opacity: 1; /* ホバー時は文字を見やすく濃くする */
+}
+
+/* --- テキスト情報 --- */
+.cardInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: #fff;
+  z-index: 2; /* オーバーレイより上 */
 }
 
 .cardName {
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.cardMeta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.cardElement {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 .cardRarity {
-  font-size: 1rem;
-  color: #fbdb5b; /* レアリティの★を金色に */
-  margin: 0;
-  font-weight: bold;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 文字を見やすく */
-}
-
-.noImage {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2a2a2a;
-  color: #666;
+  color: #fbdb5b;
 }
