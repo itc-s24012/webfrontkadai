@@ -6,12 +6,33 @@
   margin: 0 auto;
 }
 
+@keyframes fadeFloatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9); /* 下にずらして少し縮小 */
+    filter: blur(10px); /* ぼかしを入れる */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 /* --- ヒーローヘッダー（インパクト重視） --- */
 .heroHeader {
-  margin-bottom: 6rem;
-  text-align: left;
+  margin-bottom: 5rem;
+  /* 左揃え(text-align: left) だったのを削除し、中央揃えに変更 */
+  text-align: center; 
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
+  display: flex;         /* フレックスボックスを追加して */
+  flex-direction: column;/* 縦並びの */
+  align-items: center;   /* 完全な中央配置にする */
+}
+.section {
+  /* ここで属性同士の距離を決めます。かなり広めに取ります */
+  margin-bottom: 10rem; 
 }
 
 .subHeader {
@@ -24,16 +45,22 @@
 }
 
 .heroTitle {
-  font-size: clamp(3rem, 8vw, 6rem); /* 画面サイズに合わせて超巨大化 */
-  margin: 0;
+  font-size: clamp(4rem, 10vw, 8rem);
+  margin: 0.5rem 0;
   font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
   color: #fff;
-  text-transform: uppercase;
-  background: linear-gradient(to right, #fff, #888); /* 文字グラデ */
+  /* 背景グラデーションを少しリッチに */
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%); 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(63, 226, 211, 0.3));
+
+  /* 【ここが重要】浮かび上がるアニメーションを適用 */
+  opacity: 0; /* 最初は隠しておく */
+  animation: fadeFloatUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.3s; /* 少し遅れて開始 */
 }
 
 .heroDesc {
@@ -44,18 +71,18 @@
 }
 
 /* --- セクション・見出し --- */
-.section {
+.roverSection {
   margin-bottom: 6rem;
+  text-align: center; /* 中身を中央へ */
 }
-
-.label {
+.labelCenter {
   font-size: 0.8rem;
   color: var(--accent);
   letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
+  text-align: center; /* ラベルも中央へ */
 }
-
 .elementHeader {
   display: flex;
   align-items: center;
@@ -76,12 +103,18 @@
 }
 
 /* --- 漂泊者特別エリア --- */
-.roverGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+.roverGrid .card {
+  /* 幅を制限して「少し小さく」する */
+  width: 260px; /* 普通のカード(約220px)より少しだけ大きく、特別感は残す */
+  flex-grow: 0;
 }
 
+.roverGrid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 /* --- 通常グリッド --- */
 .grid {
   display: grid;
@@ -94,24 +127,18 @@
 .card {
   position: relative;
   display: block;
-  /* 縦長のポートレート比率 2:3 */
   aspect-ratio: 2 / 3; 
   border-radius: 16px;
-  overflow: hidden; /* はみ出した画像をカット */
+  overflow: hidden;
   background: #1a1a1a;
   text-decoration: none;
   isolation: isolate;
-  /* 影 */
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 100%; /* 親のgrid設定に従う */
 }
 
-/* 漂泊者カードはさらにワイドにみせる（任意） */
-@media (min-width: 768px) {
-  .cardRover {
-    aspect-ratio: 16 / 9; /* 横長でシネマティックに */
-  }
-}
+
 
 .card:hover {
   transform: translateY(-8px) scale(1.02);

@@ -30,8 +30,8 @@ export default async function Home() {
 
       {/* 漂泊者（主役級の特別表示） */}
       {rovers.length > 0 && (
-        <section className={styles.section}>
-          <div className={styles.label}>Protagonist</div>
+        <section className={styles.roverSection}> {/* クラス名を変更(後述CSS対応) */}
+          <div className={styles.labelCenter}>Protagonist</div>
           <div className={styles.roverGrid}>
             {rovers.map((character) => (
               <CharacterCard key={character.id} character={character} isRover />
